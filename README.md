@@ -246,6 +246,7 @@ Removing the class-row lock makes the concurrent race test fail (both payers con
   SELECT pa.* FROM payment_attempts pa JOIN bookings b ON b.id = pa.booking_id
   WHERE pa.status = 'succeeded' AND b.status <> 'confirmed';
   ```
+- **Stuck payments:** attempts still `pending` after a few minutes. In this slice the charge and the confirm run in one request, so a crash between them can leave money taken with the attempt `pending`. With a real gateway, the webhook resolves this; a `pending` attempt that outlives the webhook retries means the event was lost or our handler failed, so reconcile it against the provider.
 - **Overbooking:** classes with more confirmed bookings than capacity. Must always be zero.
 - Rate of `seat_taken` after a charge (how often the race actually happens) and the refund volume.
 - Payment failure rate.

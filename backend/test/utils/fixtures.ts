@@ -19,7 +19,7 @@ export async function createChildren(
 ): Promise<Child[]> {
   const parent = await dataSource.manager.save(Parent, {
     name: 'Test Parent',
-    email: 'parent@example.com',
+    email: `parent-${crypto.randomUUID()}@example.com`,
   });
   const children: Child[] = [];
   for (let index = 1; index <= childCount; index++) {

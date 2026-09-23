@@ -271,6 +271,6 @@ Removing the class-row lock makes the concurrent race test fail (both payers con
 - Testing: ~20 minutes
 - Bug fixing & re-test: ~25 minutes
 
-Total: ~3 hours 30 minutes. Writing the README and AI_USAGE take about 30 minutes.
+Total: ~3 hours 30 minutes. Writing the README and AI_USAGE took about 30 minutes.
 
 Note: Discussion with the AI happened throughout, not in one step. I followed a trust-but-verify approach: I checked the behaviour of the AI's output by hand.

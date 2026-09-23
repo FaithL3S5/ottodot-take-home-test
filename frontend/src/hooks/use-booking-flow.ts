@@ -37,6 +37,12 @@ export function useBookingFlow(onBookingChanged: () => void) {
     setErrorMessage(null);
   }
 
+  function closeBooking() {
+    setActiveBooking(null);
+    setResultMessage(null);
+    setErrorMessage(null);
+  }
+
   function submitBooking(childId: number, trialClassId: number, label: string) {
     return runAction(async () => {
       const booking = await apiClient.submitBooking(childId, trialClassId);
@@ -68,6 +74,7 @@ export function useBookingFlow(onBookingChanged: () => void) {
     errorMessage,
     isSubmitting,
     openBooking,
+    closeBooking,
     submitBooking,
     pay,
     tryAgain,

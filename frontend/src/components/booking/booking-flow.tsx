@@ -53,8 +53,12 @@ export function BookingFlow() {
           onParentChange={(parent) => {
             setSelectedParent(parent);
             setSelectedChild(null);
+            bookingFlow.closeBooking();
           }}
-          onChildChange={setSelectedChild}
+          onChildChange={(child) => {
+            setSelectedChild(child);
+            bookingFlow.closeBooking();
+          }}
         />
       </Stack>
 

@@ -1,14 +1,14 @@
 import request from 'supertest';
 import type { ChargeOutcome } from '../src/payments/payment-gateway.js';
-import { createTestApp } from './support/create-test-app.js';
-import type { TestApp } from './support/create-test-app.js';
+import { createTestApp } from './utils/create-test-app.js';
+import type { TestApp } from './utils/create-test-app.js';
 import {
   countPaymentAttempts,
   createChildren,
   createConfirmedBookings,
   createTrialClass,
   resetDatabase,
-} from './support/fixtures.js';
+} from './utils/fixtures.js';
 
 describe('Booking payments (e2e)', () => {
   let testApp: TestApp;

@@ -1,12 +1,12 @@
 import request from 'supertest';
-import { createTestApp } from './support/create-test-app.js';
-import type { TestApp } from './support/create-test-app.js';
+import { createTestApp } from './utils/create-test-app.js';
+import type { TestApp } from './utils/create-test-app.js';
 import {
   createChildren,
   createConfirmedBookings,
   createTrialClass,
   resetDatabase,
-} from './support/fixtures.js';
+} from './utils/fixtures.js';
 
 describe('Booking submission (e2e)', () => {
   let testApp: TestApp;

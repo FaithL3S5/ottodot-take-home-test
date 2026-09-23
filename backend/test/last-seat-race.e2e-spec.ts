@@ -1,14 +1,14 @@
 import request from 'supertest';
 import { Booking, PaymentAttempt } from '../src/database/entities/index.js';
-import { BarrierPaymentGateway } from './support/barrier-payment-gateway.js';
-import { createTestApp } from './support/create-test-app.js';
-import type { TestApp } from './support/create-test-app.js';
+import { BarrierPaymentGateway } from './utils/barrier-payment-gateway.js';
+import { createTestApp } from './utils/create-test-app.js';
+import type { TestApp } from './utils/create-test-app.js';
 import {
   createChildren,
   createConfirmedBookings,
   createTrialClass,
   resetDatabase,
-} from './support/fixtures.js';
+} from './utils/fixtures.js';
 
 describe('Concurrent last-seat race (e2e)', () => {
   const concurrentPayerCount = 2;

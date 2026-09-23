@@ -25,7 +25,7 @@ describe('Booking submission (e2e)', () => {
 
   function submitBooking(childId: number, trialClassId: number) {
     return request(testApp.app.getHttpServer())
-      .post('/bookings')
+      .post('/api/v1/bookings')
       .send({ childId, trialClassId });
   }
 
@@ -70,7 +70,7 @@ describe('Booking submission (e2e)', () => {
 
   it('rejects an invalid body', async () => {
     await request(testApp.app.getHttpServer())
-      .post('/bookings')
+      .post('/api/v1/bookings')
       .send({ childId: 'abc' })
       .expect(400);
   });

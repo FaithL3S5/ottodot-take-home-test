@@ -1,9 +1,9 @@
-import { ValidationPipe } from '@nestjs/common';
 import type { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import type { App } from 'supertest/types.js';
 import { DataSource } from 'typeorm';
 import { AppModule } from '../../src/app.module.js';
+import { configureApp } from '../../src/configure-app.js';
 import { PAYMENT_GATEWAY } from '../../src/payments/payment-gateway.js';
 import type { PaymentGateway } from '../../src/payments/payment-gateway.js';
 
@@ -26,7 +26,7 @@ export async function createTestApp(
   const testingModule = await testingModuleBuilder.compile();
 
   const app = testingModule.createNestApplication<INestApplication<App>>();
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
+  configureApp(app);
   await app.init();
 
   return { app, dataSource: app.get(DataSource) };

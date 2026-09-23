@@ -41,7 +41,7 @@ describe('Concurrent last-seat race (e2e)', () => {
     const bookingIds: number[] = [];
     for (const child of children.slice(3)) {
       const response = await request(httpServer)
-        .post('/bookings')
+        .post('/api/v1/bookings')
         .send({ childId: child.id, trialClassId: trialClass.id })
         .expect(201);
       bookingIds.push(response.body.id);
@@ -50,7 +50,7 @@ describe('Concurrent last-seat race (e2e)', () => {
     await Promise.all(
       bookingIds.map((bookingId) =>
         request(httpServer)
-          .post(`/bookings/${bookingId}/payments`)
+          .post(`/api/v1/bookings/${bookingId}/payments`)
           .send({ outcome: 'succeeded', idempotencyKey: `race-${bookingId}` })
           .expect(200),
       ),

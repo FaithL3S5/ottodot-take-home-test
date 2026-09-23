@@ -27,7 +27,7 @@ describe('Booking payments (e2e)', () => {
 
   async function submitBooking(childId: number, trialClassId: number) {
     const response = await request(testApp.app.getHttpServer())
-      .post('/bookings')
+      .post('/api/v1/bookings')
       .send({ childId, trialClassId })
       .expect(201);
     return response.body.id as number;
@@ -39,7 +39,7 @@ describe('Booking payments (e2e)', () => {
     idempotencyKey: string = crypto.randomUUID(),
   ) {
     const response = await request(testApp.app.getHttpServer())
-      .post(`/bookings/${bookingId}/payments`)
+      .post(`/api/v1/bookings/${bookingId}/payments`)
       .send({ outcome, idempotencyKey })
       .expect(200);
     return response.body;
@@ -47,7 +47,7 @@ describe('Booking payments (e2e)', () => {
 
   async function getRosterChildIds(trialClassId: number) {
     const response = await request(testApp.app.getHttpServer())
-      .get(`/trial-classes/${trialClassId}/roster`)
+      .get(`/api/v1/trial-classes/${trialClassId}/roster`)
       .expect(200);
     return response.body.students.map(
       (student: { childId: number }) => student.childId,
